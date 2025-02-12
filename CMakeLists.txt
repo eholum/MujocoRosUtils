@@ -17,7 +17,9 @@ include(cmake/base.cmake)
 project(${PROJECT_NAME})
 
 # MuJoCo
-if(NOT DEFINED MUJOCO_ROOT_DIR)
+if(DEFINED ENV{MUJOCO_ROOT_DIR})
+  set(MUJOCO_ROOT_DIR $ENV{MUJOCO_ROOT_DIR})
+elseif(NOT DEFINED MUJOCO_ROOT_DIR)
   message(FATAL_ERROR "Set \"MUJOCO_ROOT_DIR\"")
 elseif(NOT EXISTS ${MUJOCO_ROOT_DIR})
   message(FATAL_ERROR "\"MUJOCO_ROOT_DIR\" is invalid path: ${MUJOCO_ROOT_DIR}")
